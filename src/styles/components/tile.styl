@@ -1,0 +1,21 @@
+.tile
+  align-items center
+  background orchid
+  color white
+  display inline-flex
+  font-size 18px
+  height 100px
+  justify-content center
+  vertical-align bottom //Without this, empty divs don't align
+  width 100px
+
+.row
+  display block
+  >:nth-child(2), :first-child
+    border-right solid black 1px
+
+
+.row-container
+  >:nth-child(-n+2)
+    >:nth-child(-n+3)
+      border-bottom solid black 1px
