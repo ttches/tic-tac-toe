@@ -67,25 +67,27 @@ export default class BoardContainer extends Component {
       return accu;
     }, []);
     const choiceIndex = bestTileScores[Math.floor(Math.random() * bestTileScores.length)];
-
     this.playTile(openTiles[choiceIndex]);
   }
 
   miniMax(values, turnState, AIturn) {
     const openTiles = this.getOpenTiles(values);
+    const winner = this.checkWinner(values);
+    let scores = [];
     turnState = this.toggleTurn(turnState);
-    if (this.checkWinner(values)) {
-      return (this.checkWinner(values) === AIturn) ? 10 : -10;
+    //return 10 if AI wins, 0 for tie, -10 for loss
+    if (winner) {
+      return (winner === AIturn)
+      ? 10 : (winner === 'tie')
+        ? 0 : -10
     }
-    if(openTiles.length === 0) return 0;
-    let scores = []
-
+    //create all possible boards
     for (let i = 0; i < openTiles.length; i++) {
       let newValues = [...values];
       newValues[openTiles[i]] = turnState;
       scores.push(this.miniMax(newValues, turnState, AIturn));
     }
-
+    //choose min or max depending on who's turn it is
     if (turnState === AIturn) {
       return scores.reduce((accu, score) => (score > accu) ? score : accu, -11)
     } else {
@@ -104,14 +106,17 @@ export default class BoardContainer extends Component {
   }
 
   checkWinner(i = this.state.values) {
-    if (i.slice(0, 3).every((value) => value === i[0] && i[0] !== null)) return i[0]
-    if (i.slice(3, 6).every((value) => value === i[3] && i[3] !== null)) return i[3]
-    if (i.slice(6, 9).every((value) => value === i[6] && i[6] !== null)) return i[6]
-    if ([i[0], i[3], i[6]].every((value) => value === i[0] && i[0] !== null)) return i[0]
-    if ([i[1], i[4], i[7]].every((value) => value === i[1] && i[1] !== null)) return i[1]
-    if ([i[2], i[5], i[8]].every((value) => value === i[2] && i[2] !== null)) return i[2]
-    if ([i[0], i[4], i[8]].every((value) => value === i[0] && i[0] !== null)) return i[0]
-    if ([i[2], i[4], i[6]].every((value) => value === i[2] && i[2] !== null)) return i[2]
+    let winner;
+    if (i.slice(0, 3).every((value) => value === i[0] && i[0] !== null)) winner = i[0]
+    if (i.slice(3, 6).every((value) => value === i[3] && i[3] !== null)) winner = i[3]
+    if (i.slice(6, 9).every((value) => value === i[6] && i[6] !== null)) winner = i[6]
+    if ([i[0], i[3], i[6]].every((value) => value === i[0] && i[0] !== null)) winner = i[0]
+    if ([i[1], i[4], i[7]].every((value) => value === i[1] && i[1] !== null)) winner = i[1]
+    if ([i[2], i[5], i[8]].every((value) => value === i[2] && i[2] !== null)) winner = i[2]
+    if ([i[0], i[4], i[8]].every((value) => value === i[0] && i[0] !== null)) winner = i[0]
+    if ([i[2], i[4], i[6]].every((value) => value === i[2] && i[2] !== null)) winner = i[2]
+    if (winner) return winner;
+    if (this.getOpenTiles(i).length === 0) return 'tie'
     return false;
   }
 
@@ -129,13 +134,17 @@ export default class BoardContainer extends Component {
   }
 
   componentDidUpdate() {
-    if (this.checkWinner()) console.log(this.checkWinner());
-    if (this.getOpenTiles().length === 0) {
-      console.log('tie');
+    const winner = this.checkWinner();
+    if ((winner) && this.state.playing === true) {
+      console.log(winner);
+      this.setState({
+        ...this.state,
+        playing: false
+      });
+    }
 
       //todo change playing state here
-    }
-    if (this.state.AI === this.state.turn && this.state.playing === true) { //change playing to a prop
+    else if (this.state.AI === this.state.turn && this.state.playing === true) { //change playing to a prop
       this.handleAITurn();
     }
   }
