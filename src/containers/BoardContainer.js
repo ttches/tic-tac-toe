@@ -13,9 +13,6 @@ export default class BoardContainer extends Component {
     this.playTile = this.playTile.bind(this);
     this.toggleTurn = this.toggleTurn.bind(this);
     this.state = {
-      AI: 'O',
-      AISkill: 'master', //manage this with a prop
-      playing: true, //manage this with a prop
       turn: 'X',
       values: Array(9).fill(null)
     }
@@ -24,7 +21,7 @@ export default class BoardContainer extends Component {
   //handles the users move
   handleTileClick(e) {
     //If it's the computer's turn, return
-    if (this.state.AI === this.state.turn || this.state.playing === false) return;
+    if (this.props.AITurn === this.state.turn || this.props.playing === false) return;
     const index = e.target.dataset.index;
     //If the tile is occupied, return
     if (this.state.values[index] ) return;
@@ -33,11 +30,11 @@ export default class BoardContainer extends Component {
 
   handleAITurn() {
     const delay = (Math.floor(Math.random() * 2) + 0.5) * 1000;
-    const { AISkill } = this.state
+    const { AI } = this.props
     //chooses master, basic, or intermediate AI
-    const fn = (AISkill === 'master')
+    const fn = (AI === 'master')
       ? this.masterAI.bind(this)
-      : (AISkill === 'basic')
+      : (AI === 'basic')
         ? this.basicAI.bind(this)
         : console.log
     setTimeout(() => fn(), delay);
@@ -135,16 +132,12 @@ export default class BoardContainer extends Component {
 
   componentDidUpdate() {
     const winner = this.checkWinner();
-    if ((winner) && this.state.playing === true) {
+    if ((winner) && this.props.playing === true) {
       console.log(winner);
-      this.setState({
-        ...this.state,
-        playing: false
-      });
+      this.props.stopPlaying();
     }
 
-      //todo change playing state here
-    else if (this.state.AI === this.state.turn && this.state.playing === true) { //change playing to a prop
+    else if (this.props.AITurn === this.state.turn && this.props.playing === true) {
       this.handleAITurn();
     }
   }

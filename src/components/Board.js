@@ -9,7 +9,7 @@ export default class Board extends Component {
     let index = -3;
 
     function mapRow(arr) {
-      index = index + 3;
+      index += 3;
       return (
         <div className='row'>
           {arr.map((value, i) =>
