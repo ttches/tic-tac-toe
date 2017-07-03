@@ -8,7 +8,7 @@ export default class GameCotainer extends Component {
     this.stopPlaying = this.stopPlaying.bind(this);
     this.state = {
       AI: 'master',
-      AITurn: 'O',
+      AITurn: null,
       playing: true,
     }
   }

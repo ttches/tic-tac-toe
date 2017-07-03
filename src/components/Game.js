@@ -7,12 +7,14 @@ export default class Game extends Component {
     const {AI, AITurn, playing, stopPlaying} = this.props;
 
     return (
-      <BoardContainer
-        AI={AI}
-        AITurn={AITurn}
-        playing={playing}
-        stopPlaying={stopPlaying}
-      />
+      <div className='game-container'>
+        <BoardContainer
+          AI={AI}
+          AITurn={AITurn}
+          playing={playing}
+          stopPlaying={stopPlaying}
+        />
+      </div>
     );
   }
 }
