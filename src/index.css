@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Clip;
+  src: url("styles/fonts/Clip.ttf");
+  font-weight: 400;
+}
 article,
 details,
 section,
@@ -126,7 +131,7 @@ html,
 body,
 #root {
   min-height: 100%;
-  font: $main-font;
+  font-family: Clip;
 }
 #root {
   -webkit-box-align: center;
@@ -151,15 +156,57 @@ body,
   position: absolute;
   width: 100%;
 }
+@font-face {
+  font-family: Clip;
+  src: url("styles/fonts/Clip.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Clip;
+  src: url("styles/fonts/Clip.ttf");
+  font-weight: 400;
+}
 .game-container {
   background-color: #808080;
+  display: block;
+  padding: 10px;
+}
+.game-container h1 {
+  font-size: 2em;
+  font-weight: 100;
+  margin-top: 20px;
+  border: none;
+  color: #fff;
+  text-decoration: normal;
+  -o-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 40px #fff, 0 0 5px #ff00de, 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de;
+  text-align: center;
+}
+.options-container {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
-  padding: 10px;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.start {
+  width: 100%;
+}
+.player-container {
+  width: 50%;
+}
+.AI-options {
+  width: 50%;
 }
 .tile {
   -webkit-box-align: center;
@@ -168,7 +215,7 @@ body,
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
-  background: #da70d6;
+  background: #808080;
   color: #fff;
   display: -webkit-inline-box;
   display: -moz-inline-box;
@@ -176,7 +223,7 @@ body,
   display: -ms-inline-flexbox;
   display: inline-box;
   display: inline-flex;
-  font-size: 18px;
+  font-size: 3em;
   height: 100px;
   -webkit-box-pack: center;
   -moz-box-pack: center;
@@ -189,11 +236,37 @@ body,
 }
 .row {
   display: block;
+  margin: 0 auto;
+  width: 300px;
 }
 .row >:nth-child(2),
 .row :first-child {
   border-right: solid #000 1px;
 }
+.row-container {
+  display: block;
+  margin: 0 auto;
+}
 .row-container >:nth-child(-n+2) >:nth-child(-n+3) {
   border-bottom: solid #000 1px;
+}
+.O-neon {
+  border: none;
+  color: #fff;
+  text-decoration: normal;
+  -o-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 40px #fff, 0 0 5px #00f, 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+}
+.X-neon {
+  border: none;
+  color: #fff;
+  text-decoration: normal;
+  -o-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 40px #fff, 0 0 5px #ffa500, 0 0 10px #ffa500, 0 0 20px #ffa500, 0 0 30px #ffa500;
 }

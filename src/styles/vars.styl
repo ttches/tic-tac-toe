@@ -2,3 +2,18 @@
 
 $body-background = black
 $game-background = grey
+$tile-background = grey
+
+@font-face
+  font-family Clip
+  src url('styles/fonts/Clip.ttf')
+  font-weight 400;
+
+neon-glow(color)
+  border: none;
+  color: rgba(255,255,255,1);
+  text-decoration: normal;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 5px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 40px rgba(255,255,255,1) , 0 0 5px color , 0 0 10px color , 0 0 20px color , 0 0 30px color ;

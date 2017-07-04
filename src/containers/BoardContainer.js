@@ -42,7 +42,6 @@ export default class BoardContainer extends Component {
 
   basicAI() {
     //plays random tile
-    console.log(this)
     const openTiles = this.getOpenTiles();
     const randomTile = openTiles[Math.floor(Math.random() * openTiles.length)];
     this.playTile(randomTile)

@@ -1,9 +1,9 @@
 .tile
   align-items center
-  background orchid
+  background $tile-background
   color white
   display inline-flex
-  font-size 18px
+  font-size 3em
   height 100px
   justify-content center
   vertical-align bottom //Without this, empty divs don't align
@@ -11,11 +11,21 @@
 
 .row
   display block
+  margin 0 auto
+  width 300px
   >:nth-child(2), :first-child
     border-right solid black 1px
 
 
 .row-container
+  display block
+  margin 0 auto
   >:nth-child(-n+2)
     >:nth-child(-n+3)
       border-bottom solid black 1px
+
+.O-neon
+  neon-glow(blue)
+
+.X-neon
+  neon-glow(orange)
