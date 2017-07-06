@@ -27,14 +27,18 @@ export default class Game extends Component {
 
           <div className='player-container'>
             <h1 className='pink-neon'>Players</h1>
-            <input type='radio' name='players' value='1'
-              onChange={onPlayersChange}
-              checked={players === '1'}/>
-              <span className={(players === '1') ? 'pink-neon' : ''}>1</span>
-            <input type='radio' name='players' value='2'
-              onChange={onPlayersChange}
-              checked={players === '2'}/>
-              <span className={(players === '2') ? 'pink-neon' : ''}>2</span>
+            <span
+              className={`player-number ${(players === '1') ? 'pink-neon' : ''}`}
+              data-value='1'
+              onClick={onPlayersChange}>
+              1
+            </span>
+            <span
+              className={`player-number ${(players === '2') ? 'pink-neon' : ''}`}
+              data-value='2'
+              onClick={onPlayersChange}>
+              2
+            </span>
           </div>
 
           <div className='AI-options'>

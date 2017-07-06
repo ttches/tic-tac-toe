@@ -191,11 +191,24 @@ body,
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+.options-container h1 {
+  margin-bottom: 15px;
+  width: 100%;
+}
 .start {
   width: 100%;
 }
 .player-container {
   width: 50%;
+  text-align: center;
+}
+.player-container h1 {
+  margin-bottom: 15px;
+  width: 100%;
+}
+.player-container .player-number {
+  padding: 3px 20px;
+  font-size: 1.7em;
 }
 .AI-options {
   width: 50%;

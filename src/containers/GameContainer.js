@@ -35,7 +35,8 @@ export default class GameCotainer extends Component {
   /*I wanted this to just add and remove a neon glow from the AI Options h1 classList
   but I couldn't make the radio buttons work without a change of state*/
   handlePlayersChange(e) {
-    const players = e.target.value;
+    const players = e.target.dataset.value
+    if (players === this.state.players) return;
     this.setState({
       ...this.state,
       players,
