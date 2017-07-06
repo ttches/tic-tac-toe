@@ -13,7 +13,9 @@ export default class BoardContainer extends Component {
     this.playTile = this.playTile.bind(this);
     this.toggleTurn = this.toggleTurn.bind(this);
     this.state = {
+      //Current player turn
       turn: 'X',
+      //All board tile values, 'X', 'O', or null
       values: Array(9).fill(null)
     }
   }
@@ -129,6 +131,7 @@ export default class BoardContainer extends Component {
     return (turn === 'X') ? 'O' : 'X';
   }
 
+//LifeCycles
   componentDidUpdate() {
     const winner = this.checkWinner();
     if ((winner) && this.props.playing === true) {
@@ -138,6 +141,15 @@ export default class BoardContainer extends Component {
 
     else if (this.props.AITurn === this.state.turn && this.props.playing === true) {
       this.handleAITurn();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.restart > this.props.restart) {
+      this.setState({
+        turn: 'X',
+        values: Array(9).fill(null)
+      })
     }
   }
 

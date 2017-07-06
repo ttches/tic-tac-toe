@@ -175,14 +175,6 @@ body,
   font-size: 2em;
   font-weight: 100;
   margin-top: 20px;
-  border: none;
-  color: #fff;
-  text-decoration: normal;
-  -o-text-overflow: clip;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  white-space: pre;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 40px #fff, 0 0 5px #ff00de, 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de;
   text-align: center;
 }
 .options-container {
@@ -207,6 +199,16 @@ body,
 }
 .AI-options {
   width: 50%;
+}
+.pink-neon {
+  border: none;
+  color: #fff;
+  text-decoration: normal;
+  -o-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 40px #fff, 0 0 5px #ff00de, 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de;
 }
 .tile {
   -webkit-box-align: center;
