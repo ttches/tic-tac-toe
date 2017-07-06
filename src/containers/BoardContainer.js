@@ -5,10 +5,13 @@ import Board from '../components/Board';
 export default class BoardContainer extends Component {
   constructor(props) {
     super();
+    this.basicAI = this.basicAI.bind(this);
     this.checkWinner = this.checkWinner.bind(this);
     this.getOpenTiles = this.getOpenTiles.bind(this);
     this.handleAITurn = this.handleAITurn.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
+    this.masterAI = this.masterAI.bind(this);
+    this.mediumAI = this.mediumAI.bind(this);
     this.miniMax = this.miniMax.bind(this);
     this.playTile = this.playTile.bind(this);
     this.toggleTurn = this.toggleTurn.bind(this);
@@ -35,11 +38,20 @@ export default class BoardContainer extends Component {
     const { AI } = this.props
     //chooses master, basic, or intermediate AI
     const fn = (AI === 'master')
-      ? this.masterAI.bind(this)
-      : (AI === 'basic')
-        ? this.basicAI.bind(this)
-        : console.log
+      ? this.masterAI
+      : (AI === 'easy')
+        ? this.basicAI
+        : this.mediumAI
     setTimeout(() => fn(), delay);
+  }
+
+  mediumAI() {
+    const rand = Math.random();
+    if (rand < .7) {
+      this.masterAI();
+    } else {
+      this.basicAI();
+    }
   }
 
   basicAI() {

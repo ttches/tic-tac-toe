@@ -5,7 +5,7 @@ import BoardContainer from '../containers/BoardContainer';
 export default class Game extends Component {
   render() {
     const {AI, AITurn, players, playing, restart, stopPlaying,
-      onPlayersChange} = this.props;
+      onPlayersChange, onAIChange} = this.props;
 
     return (
       <div className='game-container'>
@@ -20,7 +20,7 @@ export default class Game extends Component {
           <div className='start'>
             <span className='start-btn' onClick={this.props.onRestartGame}>
               <h1 className='pink-neon'>
-                {(restart) ? 'Start Over' : 'Start Playing'}
+                Start Over
               </h1>
             </span>
           </div>
@@ -29,17 +29,31 @@ export default class Game extends Component {
             <h1 className='pink-neon'>Players</h1>
             <input type='radio' name='players' value='1'
               onChange={onPlayersChange}
-              checked={players === '1'}/>1
+              checked={players === '1'}/>
+              <span className={(players === '1') ? 'pink-neon' : ''}>1</span>
             <input type='radio' name='players' value='2'
               onChange={onPlayersChange}
-              checked={players === '2'}/>2
+              checked={players === '2'}/>
+              <span className={(players === '2') ? 'pink-neon' : ''}>2</span>
           </div>
 
           <div className='AI-options'>
             <h1 className={(players === '1') ? 'pink-neon' : ''}>AI Options</h1>
-            <input type='radio' name='AI' value='easy'/>Easy
-            <input type='radio' name='AI' value='medium'/>Medium
-            <input type='radio' name='AI' value='master' defaultChecked/>Master
+            <input type='radio' name='AI' value='easy' checked={AI === 'easy'}
+              onChange={onAIChange} />
+              <span
+                className={(players === '2') ? ''
+                : (AI === 'easy') ? 'pink-neon' : ''}>Easy</span>
+            <input type='radio' name='AI' value='medium' checked={AI === 'medium'}
+              onChange={onAIChange} />
+              <span
+                className={(players === '2') ? ''
+                : (AI === 'medium') ? 'pink-neon' : ''}>Medium</span>
+            <input type='radio' name='AI' value='master' checked={AI === 'master'}
+              onChange={onAIChange} />
+              <span
+                className={(players === '2') ? ''
+                : (AI === 'master') ? 'pink-neon' : ''}>Master</span>
           </div>
         </div>
       </div>
