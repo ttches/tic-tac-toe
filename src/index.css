@@ -127,6 +127,9 @@ video {
   box-sizing: border-box;
   font: inherit;
 }
+*:hover {
+  cursor: default;
+}
 html,
 body,
 #root {
@@ -192,7 +195,6 @@ body,
   flex-wrap: wrap;
 }
 .options-container h1 {
-  margin-bottom: 15px;
   width: 100%;
 }
 .start {
@@ -212,6 +214,16 @@ body,
 }
 .AI-options {
   width: 50%;
+  text-align: center;
+}
+.AI-options h1 {
+  margin-bottom: 7px;
+}
+.AI-options .AI-difficulty {
+  margin-right: 10px;
+}
+.AI-options .AI-first {
+  margin-top: 7px;
 }
 .pink-neon {
   border: none;
@@ -222,6 +234,16 @@ body,
   text-overflow: clip;
   white-space: pre;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 40px #fff, 0 0 5px #ff00de, 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de;
+}
+.start-neon {
+  border: none;
+  color: #fff;
+  text-decoration: normal;
+  -o-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 40px #fff, 0 0 5px #68ff3a, 0 0 10px #68ff3a, 0 0 20px #68ff3a, 0 0 30px #68ff3a;
 }
 .tile {
   -webkit-box-align: center;

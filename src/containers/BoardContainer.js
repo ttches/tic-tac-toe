@@ -33,6 +33,7 @@ export default class BoardContainer extends Component {
     this.playTile(index);
   };
 
+  //runs when state.turn = props.AITurn
   handleAITurn() {
     const delay = (Math.floor(Math.random() * 2) + 0.5) * 1000;
     const { AI } = this.props
@@ -45,6 +46,7 @@ export default class BoardContainer extends Component {
     setTimeout(() => fn(), delay);
   }
 
+  //70% chance of using MasterAI, 30% chance to use basic
   mediumAI() {
     const rand = Math.random();
     if (rand < .7) {
@@ -54,13 +56,14 @@ export default class BoardContainer extends Component {
     }
   }
 
+  //plays random tile
   basicAI() {
-    //plays random tile
     const openTiles = this.getOpenTiles();
     const randomTile = openTiles[Math.floor(Math.random() * openTiles.length)];
     this.playTile(randomTile)
   }
 
+  //plays best possible move
   masterAI() {
     const openTiles = this.getOpenTiles();
     //minimax possible moves
@@ -115,6 +118,7 @@ export default class BoardContainer extends Component {
     });
   }
 
+  //returns X / O / tie if the game has ended, false otherwise
   checkWinner(i = this.state.values) {
     let winner;
     if (i.slice(0, 3).every((value) => value === i[0] && i[0] !== null)) winner = i[0]
@@ -130,6 +134,7 @@ export default class BoardContainer extends Component {
     return false;
   }
 
+  //returns unplayed tiles
   getOpenTiles(tiles = this.state.values) {
     return tiles.reduce((accu, value, i) => {
       if (value === null) {
@@ -156,6 +161,7 @@ export default class BoardContainer extends Component {
     }
   }
 
+  //If this.props.restart increments, restart the game.
   componentWillReceiveProps(nextProps) {
     if (nextProps.restart > this.props.restart) {
       this.setState({

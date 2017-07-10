@@ -8,6 +8,7 @@ export default class GameCotainer extends Component {
     this.handleAIChange = this.handleAIChange.bind(this);
     this.handlePlayersChange = this.handlePlayersChange.bind(this);
     this.handleRestartGame = this.handleRestartGame.bind(this);
+    this.handleToggleAITurn = this.handleToggleAITurn.bind(this);
     this.stopPlaying = this.stopPlaying.bind(this);
     this.state = {
       //AI has 3 difficulty settings.
@@ -26,7 +27,7 @@ export default class GameCotainer extends Component {
   }
 
   handleAIChange(e) {
-    const AI = e.target.value;
+    const AI = e.target.dataset.value;
     this.setState({
       ...this.state,
       AI
@@ -53,6 +54,14 @@ export default class GameCotainer extends Component {
     });
   }
 
+  handleToggleAITurn() {
+    this.setState({
+      ...this.state,
+      AITurn: (this.state.AITurn === 'O') ? 'X' : 'O',
+      restart: this.state.restart + 1
+    });
+  }
+
   stopPlaying() {
     this.setState({
       ...this.state,
@@ -69,6 +78,7 @@ export default class GameCotainer extends Component {
         onAIChange={this.handleAIChange}
         onPlayersChange={this.handlePlayersChange}
         onRestartGame={this.handleRestartGame}
+        onToggleAITurn={this.handleToggleAITurn}
         players={players}
         playing={playing}
         restart={restart}
