@@ -161,7 +161,9 @@ export default class BoardContainer extends Component {
     }
   }
 
-  //If this.props.restart increments, restart the game.
+  /*If this.props.restart increments, restart the game. This can lead to bugs when
+  toggling 'AI Plays First' I think because the AI logic has a setTimeout and I don't know
+  if I can break that timeout */
   componentWillReceiveProps(nextProps) {
     if (nextProps.restart > this.props.restart) {
       this.setState({
